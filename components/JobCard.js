@@ -69,7 +69,7 @@ export default function JobCard({ job, onSelect, onQuickAdvance }) {
             marginLeft: 8,
           }}
         >
-          {stage.icon} {stage.label}
+          {stage.label}
         </span>
       </div>
 
@@ -88,10 +88,9 @@ export default function JobCard({ job, onSelect, onQuickAdvance }) {
         }}
       >
         {job.serviceType && <span>{job.serviceType}</span>}
-        {job.address && <span>📍 {job.address}</span>}
+        {job.address && <span>{job.address}</span>}
         {job.scheduledDate && (
           <span style={{ color: stage.color, fontWeight: 600 }}>
-            📅{" "}
             {new Date(job.scheduledDate + "T00:00:00").toLocaleDateString(
               "en-US",
               { month: "short", day: "numeric" }
@@ -128,7 +127,7 @@ export default function JobCard({ job, onSelect, onQuickAdvance }) {
               fontWeight: 600,
             }}
           >
-            ➡ Next: {next.label}
+            Next: {next.label}
           </div>
           {onQuickAdvance && (
             <button
@@ -172,7 +171,7 @@ export default function JobCard({ job, onSelect, onQuickAdvance }) {
             color: "var(--danger)",
           }}
         >
-          ⚠ {alert}
+          {alert}
         </div>
       )}
     </div>

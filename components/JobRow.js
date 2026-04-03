@@ -20,7 +20,7 @@ export default function JobRow({ job, onSelect, onQuickAdvance, showDaysWaiting 
           <span className="job-row-name">{job.customerName || "No Name"}</span>
           <span className="job-row-meta">
             {job.serviceType && <span>{job.serviceType}</span>}
-            {job.address && <span className="job-row-addr">📍 {job.address}</span>}
+            {job.address && <span className="job-row-addr">{job.address}</span>}
             {showDaysWaiting && waitDays !== null && (
               <span
                 style={{
@@ -57,10 +57,10 @@ export default function JobRow({ job, onSelect, onQuickAdvance, showDaysWaiting 
         </div>
       </div>
       {next && !isDone && (
-        <div className="job-row-next">➡ {next.label}</div>
+        <div className="job-row-next">Next: {next.label}</div>
       )}
       {alert && (
-        <div className="job-row-alert">⚠ {alert}</div>
+        <div className="job-row-alert">{alert}</div>
       )}
     </div>
   );

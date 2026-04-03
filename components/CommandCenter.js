@@ -18,7 +18,7 @@ function Section({ title, count, color, icon, children, defaultOpen = true }) {
     <div className="cc-section" style={{ borderLeftColor: color }}>
       <button className="cc-section-header" onClick={() => setOpen(!open)}>
         <div className="cc-section-title">
-          <span className="cc-section-icon">{icon}</span>
+          <span className="cc-section-dot" style={{ background: color }} />
           <span>{title}</span>
           <span className="cc-section-count" style={{ background: color + "33", color }}>
             {count}
@@ -164,7 +164,7 @@ export default function CommandCenter({
         title="NEEDS ATTENTION"
         count={needsAttention.length}
         color="var(--danger)"
-        icon="🔴"
+        icon=""
       >
         {needsAttention.map((j) => (
           <JobRow
@@ -181,7 +181,7 @@ export default function CommandCenter({
         title="WAITING ON"
         count={waitingSoil.length + waitingEstimate.length}
         color="var(--warning)"
-        icon="🟡"
+        icon=""
       >
         {waitingSoil.length > 0 && (
           <div className="cc-subsection-label">
@@ -218,7 +218,7 @@ export default function CommandCenter({
         title="READY TO MOVE"
         count={readyToMove.length}
         color="var(--success)"
-        icon="🟢"
+        icon=""
       >
         {readyToMove.map((j) => (
           <JobRow
@@ -235,7 +235,7 @@ export default function CommandCenter({
         title="THIS WEEK"
         count={thisWeek.length}
         color="var(--h2-blue)"
-        icon="📅"
+        icon=""
       >
         {thisWeek.map((j) => {
           const dayLabel = new Date(j.scheduledDate + "T00:00:00").toLocaleDateString(
@@ -259,7 +259,7 @@ export default function CommandCenter({
               >
                 {dayLabel}
                 {!j.checks?.depositReceived && (
-                  <span style={{ color: "var(--danger)", marginLeft: 8 }}>⚠ No deposit</span>
+                  <span style={{ color: "var(--danger)", marginLeft: 8 }}>No deposit</span>
                 )}
               </div>
               <JobRow job={j} onSelect={onSelect} onQuickAdvance={onQuickAdvance} />
@@ -273,7 +273,7 @@ export default function CommandCenter({
         title="RECENTLY ADDED"
         count={recentlyUpdated.length}
         color="var(--text-secondary)"
-        icon="🕐"
+        icon=""
         defaultOpen={false}
       >
         {recentlyUpdated.map((j) => (
@@ -303,7 +303,7 @@ export default function CommandCenter({
       {/* Empty state */}
       {activeJobs.length === 0 && (
         <div style={{ textAlign: "center", padding: 40, color: "var(--text-muted)" }}>
-          <div style={{ fontSize: 44, marginBottom: 10 }}>🌱</div>
+          <img src="/logo.jpg" alt="H2 Grow" style={{ height: 48, borderRadius: 4, marginBottom: 10, opacity: 0.5 }} />
           <div
             style={{
               fontFamily: "var(--heading-font)",

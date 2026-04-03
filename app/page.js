@@ -150,19 +150,16 @@ export default function Dashboard() {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: 22, fontWeight: 800, fontFamily: "var(--heading-font)" }}>
-            <span style={{ color: "var(--h2-blue)" }}>H2</span>{" "}
-            <span style={{ color: "var(--grow-green)" }}>GROW</span>
-          </div>
+          <img src="/logo.jpg" alt="H2 Grow" style={{ height: 56, borderRadius: 4, marginBottom: 8 }} />
           <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 4 }}>Loading...</div>
         </div>
       </div>
     );
 
   const tabs = [
-    { id: "dashboard", label: "Dashboard", icon: "⚡" },
-    { id: "pipeline", label: "Pipeline", icon: "📋" },
-    { id: "schedule", label: "Schedule", icon: "📅" },
+    { id: "dashboard", label: "Dashboard" },
+    { id: "pipeline", label: "Pipeline" },
+    { id: "schedule", label: "Schedule" },
   ];
 
   return (
@@ -179,11 +176,8 @@ export default function Dashboard() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ fontFamily: "var(--heading-font)", fontSize: 22, fontWeight: 700 }}>
-              <span style={{ color: "var(--h2-blue)" }}>H2</span>{" "}
-              <span style={{ color: "var(--grow-green)" }}>GROW</span>
-            </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <img src="/logo.jpg" alt="H2 Grow" style={{ height: 36, borderRadius: 4 }} />
             <div
               style={{
                 fontSize: 11,
@@ -280,7 +274,7 @@ export default function Dashboard() {
                 textTransform: "uppercase",
               }}
             >
-              {t.icon} {t.label}
+              {t.label}
             </button>
           ))}
         </div>
@@ -348,7 +342,7 @@ export default function Dashboard() {
             {/* Job list */}
             {filteredJobs.length === 0 && !search && stageFilter === "All" && serviceFilter === "All" ? (
               <div style={{ textAlign: "center", padding: 50, color: "var(--text-muted)" }}>
-                <div style={{ fontSize: 44, marginBottom: 10 }}>🌱</div>
+                <img src="/logo.jpg" alt="H2 Grow" style={{ height: 48, borderRadius: 4, marginBottom: 10, opacity: 0.5 }} />
                 <div
                   style={{
                     fontFamily: "var(--heading-font)",
@@ -396,7 +390,7 @@ export default function Dashboard() {
                     letterSpacing: "1.5px",
                   }}
                 >
-                  🏁 Completed ({doneJobs.length}) {showDone ? "▲" : "▼"}
+                  Completed ({doneJobs.length}) {showDone ? "▲" : "▼"}
                 </button>
                 {showDone &&
                   doneJobs.map((j) => (

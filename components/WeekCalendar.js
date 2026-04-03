@@ -150,14 +150,14 @@ export default function WeekCalendar({ jobs, onSelect }) {
                   {j.customerName}
                 </div>
                 <div style={{ fontSize: 12, color: "var(--text-secondary)" }}>
-                  {j.serviceType} {j.address && `• 📍 ${j.address}`}{" "}
+                  {j.serviceType} {j.address && `• ${j.address}`}{" "}
                   {j.checks.depositReceived ? (
                     <span style={{ color: "var(--success)", marginLeft: 8 }}>
-                      💰 ✓
+                      Deposit ✓
                     </span>
                   ) : (
                     <span style={{ color: "var(--danger)", marginLeft: 8 }}>
-                      ⚠ No deposit
+                      No deposit
                     </span>
                   )}
                 </div>

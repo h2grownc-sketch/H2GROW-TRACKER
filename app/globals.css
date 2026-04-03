@@ -178,7 +178,12 @@ button { font-family: var(--heading-font); cursor: pointer; }
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
-.cc-section-icon { font-size: 12px; }
+.cc-section-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 .cc-section-count {
   font-size: 11px;
   font-weight: 700;
