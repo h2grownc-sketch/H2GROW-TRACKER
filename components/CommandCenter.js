@@ -42,24 +42,25 @@ export default function CommandCenter({
   onNew,
   onSwitchTab,
 }) {
-  // Keys where the next action is something YOU must do (not waiting on customer/lab)
-  const YOUR_ACTION_KEYS = new Set([
-    "consultationNeeded", "consultationComplete",
-    "siteVisit", "soilCollected", "soilMailed",
-    "materialsOrdered", "scheduled", "jobComplete",
-    "careSent", "followUp14", "followUp30", "followUp90", "followUp3",
-    "quoteSent", "sitePrepQuoteSent",
-  ]);
+  // Your Action — grouped by action type
+  const ACTION_GROUPS = [
+    { label: "Consultation Needed", keys: new Set(["consultationNeeded", "consultationComplete"]) },
+    { label: "Mail Soil Samples", keys: new Set(["soilCollected", "soilMailed"]) },
+    { label: "Build / Send Quote", keys: new Set(["quoteSent", "sitePrepQuoteSent"]) },
+    { label: "Approved — Needs Scheduling", keys: new Set(["depositReceived", "materialsOrdered", "scheduled"]) },
+  ];
 
-  // Jobs where the next step is YOUR action to complete
-  const yourAction = useMemo(
-    () =>
-      activeJobs.filter((j) => {
+  const yourActionGroups = useMemo(() => {
+    return ACTION_GROUPS.map((group) => {
+      const jobs = activeJobs.filter((j) => {
         const next = getNextAction(j.checks, j.serviceType, soilFlag(j));
-        return next && YOUR_ACTION_KEYS.has(next.key);
-      }),
-    [activeJobs]
-  );
+        return next && group.keys.has(next.key);
+      });
+      return { ...group, jobs };
+    }).filter((g) => g.jobs.length > 0);
+  }, [activeJobs]);
+
+  const yourActionTotal = yourActionGroups.reduce((s, g) => s + g.jobs.length, 0);
 
   const needsAttention = useMemo(
     () =>
@@ -160,9 +161,14 @@ export default function CommandCenter({
         ))}
       </Section>
 
-      <Section title="YOUR ACTION" count={yourAction.length} color="var(--h2-blue)">
-        {yourAction.map((j) => (
-          <JobRow key={j.id} job={j} onSelect={onSelect} onQuickAdvance={onQuickAdvance} />
+      <Section title="YOUR ACTION" count={yourActionTotal} color="var(--h2-blue)">
+        {yourActionGroups.map((group, gi) => (
+          <div key={group.label} style={{ marginTop: gi > 0 ? 10 : 0 }}>
+            <div className="cc-subsection-label">{group.label} ({group.jobs.length})</div>
+            {group.jobs.map((j) => (
+              <JobRow key={j.id} job={j} onSelect={onSelect} onQuickAdvance={onQuickAdvance} />
+            ))}
+          </div>
         ))}
       </Section>
 
