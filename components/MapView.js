@@ -101,7 +101,7 @@ function loadLeaflet() {
 
 // ── Filter options ──
 const SERVICES = ["All","Hydroseeding","Forestry Mulching","Site Prep / Grading","Drainage","Erosion Control","Food Plot","Skid Steer Work","Other"];
-const STAGES = ["All","New Lead","Contacted","Sampling","Awaiting Results","Quoting","Quote Sent","Approved","Job Day","Follow-Up"];
+const STAGES = ["All","New Lead","Contacted","Consultation","Consulted","Sampling","Awaiting Results","Quoting","Quote Sent","Approved","Job Day","Follow-Up"];
 
 export default function MapView({ jobs, onSelect }) {
   const mapContainerRef = useRef(null);
@@ -268,6 +268,7 @@ export default function MapView({ jobs, onSelect }) {
       <div className="map-legend">
         {[
           { label: "New/Contacted", color: "#5BA3D1" },
+          { label: "Consultation", color: "#B07CC6" },
           { label: "Sampling", color: "#8B6FC0" },
           { label: "Awaiting/Quoting", color: "#C48A08" },
           { label: "Quote Sent", color: "#D4740A" },
