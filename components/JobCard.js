@@ -6,6 +6,7 @@ import {
   getAlertMsg,
   daysInStage,
   isHydro,
+  isJobDone,
   soilFlag,
 } from "../lib/jobUtils";
 
@@ -33,9 +34,7 @@ export default function JobCard({ job, onSelect, onQuickAdvance }) {
   const alert = getAlertMsg(job);
   const stageDays = daysInStage(job);
   const city = job.city || "";
-  const isDone =
-    (job.serviceType === "Hydroseeding" && job.checks?.followUp90) ||
-    (job.serviceType !== "Hydroseeding" && job.checks?.followUp3);
+  const isDone = isJobDone(job);
 
   return (
     <div

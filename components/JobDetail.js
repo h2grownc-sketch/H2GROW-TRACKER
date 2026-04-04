@@ -582,10 +582,20 @@ export default function JobDetail({ job, onSave, onDelete, onClose, saving, allJ
         </div>
 
         {/* Save / Delete */}
+        {/* Validation error */}
+        {!form.customerName?.trim() && (
+          <div style={{ marginTop: 12, padding: "8px 12px", borderRadius: 6, background: "#D6454510", color: "var(--danger)", fontSize: 13, fontWeight: 600 }}>
+            Customer name is required
+          </div>
+        )}
+
         <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
           <button
-            onClick={() => onSave(form)}
-            disabled={saving}
+            onClick={() => {
+              if (!form.customerName?.trim()) return;
+              onSave(form);
+            }}
+            disabled={saving || !form.customerName?.trim()}
             style={{
               flex: 1,
               padding: "13px 0",

@@ -24,7 +24,7 @@ import MaterialsCalc from "../components/MaterialsCalc";
 import QuickRefTab from "../components/QuickRefTab";
 import OpsChecklistTab from "../components/OpsChecklistTab";
 
-const PIN_CODE = "2024";
+const PIN_CODE = process.env.NEXT_PUBLIC_PIN_CODE || "2024";
 
 export default function Dashboard() {
   // Auth
